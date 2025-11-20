@@ -1,0 +1,35 @@
+spring.application.name=com.delivery_management_service
+
+spring.datasource.url =
+spring.datasource.username =
+spring.datasource.password =
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto=update
+# Show SQL queries
+spring.jpa.show-sql=true
+
+# Format SQL queries for readability
+spring.jpa.properties.hibernate.format_sql=true
+
+# (Optional) Show parameter bindings in SQL
+logging.level.org.hibernate.type.descriptor.sql=trace
+
+# (Optional) Show Hibernate-generated SQL
+#logging.level.org.hibernate.SQL=debug
+
+#logging.level.org.hibernate.type.descriptor.sql.BasicBinder=TRACE
+#logging.level.org.hibernate.SQL=debug
+logging.level.org.hibernate.orm.jdbc.bind=trace
+
+#twilio credentials
+app.twilio.account-sid=
+app.twilio.auth-token=
+app.twilio.from-phone=
+#Make it false for development
+app.twilio.enabled=true
+
+app.delivery.base-url=http://localhost:8080
+
+
+
