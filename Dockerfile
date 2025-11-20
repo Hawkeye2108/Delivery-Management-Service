@@ -1,7 +1,5 @@
-# Use an official Maven + JDK image for build
-FROM maven:3.9.2-eclipse-temurin-22 AS build
-
-# Set working directory
+# Build stage
+FROM maven:3.9.2-jdk-22 AS build
 WORKDIR /app
 
 # Copy pom and source code
@@ -11,11 +9,11 @@ COPY src ./src
 # Build the jar
 RUN mvn clean package -DskipTests
 
-# Use a smaller JDK image for runtime
+# Runtime stage
 FROM eclipse-temurin:22-jdk AS runtime
 WORKDIR /app
 
-# Copy the built jar from the build stage
+# Copy jar from build stage
 COPY --from=build /app/target/com.delivery_management_service-0.0.1-SNAPSHOT.jar ./app.jar
 
 # Expose port
