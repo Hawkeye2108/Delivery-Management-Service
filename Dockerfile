@@ -1,19 +1,19 @@
 # Build stage
-FROM maven:3.9.2-jdk-22 AS build
+FROM maven:3.9.11-eclipse-temurin-17 AS build
 WORKDIR /app
 
 # Copy pom and source code
 COPY pom.xml .
 COPY src ./src
 
-# Build the jar
+# Build the JAR
 RUN mvn clean package -DskipTests
 
 # Runtime stage
-FROM eclipse-temurin:22-jdk AS runtime
+FROM eclipse-temurin:17-jdk AS runtime
 WORKDIR /app
 
-# Copy jar from build stage
+# Copy the built jar from the build stage
 COPY --from=build /app/target/com.delivery_management_service-0.0.1-SNAPSHOT.jar ./app.jar
 
 # Expose port
