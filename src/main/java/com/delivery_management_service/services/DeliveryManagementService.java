@@ -774,6 +774,7 @@ public class DeliveryManagementService {
                 log.warn("No driver accepted order: {}. Marking as UNASSIGNED", orderId);
                 order.setStatus("UNASSIGNED");
                 orderRepository.save(order);
+//                orderRepository.flush(); // Force immediate write
             }
 
         } catch (Exception e) {
@@ -1140,7 +1141,7 @@ public class DeliveryManagementService {
         }
 
         // Check if order is in correct status
-        if ("ACCEPTED".equals(order.getStatus())) {
+        if (!"ACCEPTED".equals(order.getStatus())) {
             log.warn("Order {} is in status '{}', expected 'PENDING'", orderId, order.getStatus());
             throw new RuntimeException("Order is not available for assignment. Current status: " + order.getStatus());
         }
